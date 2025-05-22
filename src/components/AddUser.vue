@@ -12,7 +12,7 @@
           id="grid-first-name"
           type="text"
           placeholder="Enter First Name"
-          v-model="firstName"
+          v-model="user.firstName"
         >
       </div>
       <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -26,7 +26,7 @@
           id="grid-last-name"
           type="text"
           placeholder="Enter Last Name"
-          v-model="firstName"
+          v-model="user.lastName"
         >
       </div>
       <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -39,7 +39,7 @@
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           id="grid-date"
           type="date"
-          v-model="birthDate"
+          v-model="user.birthDate"
           max="9999-12-31"
         >
       </div>
@@ -54,14 +54,19 @@
           id="grid-quote"
           type="text"
           placeholder="Enter Quote"
-          v-model="quote"
+          v-model="user.quote"
         >
       </div>
       <drop-down
+        :label="'Select Profession'"
         :options="professions"
-        :changeSelect="selectProfession"
+        :changeSelect="user.selectProfession"
       />
-      <drop-down />
+      <drop-down
+        :label="'Select Country'"
+        :options="countries"
+        :changeSelect="user.selectCountry"
+      />
     </div>
     <button-component
       :on-click="addUser"
