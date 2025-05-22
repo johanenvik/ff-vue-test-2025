@@ -7,7 +7,6 @@
         <th class="px-4 py-2" v-text="'Age'" />
         <th class="px-4 py-2" v-text="'Profession'" />
         <th class="px-4 py-2" v-text="'Country'" />
-        <th class="px-4 py-2" v-text="'Country of Residence'" />
         <th class="px-4 py-2" v-text="'Favorite Quote'" />
         <th class="px-4 py-2" v-text="''" />
       </tr>
@@ -19,7 +18,6 @@
         <td class="border px-4 py-2" v-text="userAge(user)" />
         <td class="border px-4 py-2" v-text="userProfession(user)" />
         <td class="border px-4 py-2" v-text="userCountry(user)" />
-        <td class="border px-4 py-2" v-text="userCountryOfResidence(user)" />
         <td class="border px-4 py-2" v-text="user.quote" />
         <td class="px-4 py-2">
           <button-component
@@ -62,17 +60,12 @@ export default {
     },
     userCountry(user) {
       // Hämta landets namn baserat på landets ID
-      const country = this.countries.find(c => c.id  === user.country_id)
+      const country = this.countries.find(c => c.value  === user.country_id)
       return country ? country.text : 'Unknown'
-    },
-    userCountryOfResidence(user) {
-      // Hämta landets namn baserat på landets ID och sätt userCountry som standardvärde om det inte finns något
-      const country = this.countries.find(c => c.id  === user.country_of_residence_id)
-      return country ? country.text : this.userCountry(user)
     },
     userProfession(user) {
       // Hämta yrkets namn baserat på yrkets ID
-      const profession = this.professions.find(p => p.id  === user.profession_id)
+      const profession = this.professions.find(p => p.value  === user.profession_id)
       return profession ? profession.text : 'Unknown'
     },
     userAge(user) {

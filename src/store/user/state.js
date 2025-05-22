@@ -14,7 +14,7 @@ const state = () => ({
       firstName: 'Johan',
       lastName: 'Envik',
       birthDate: '1985-07-08',
-      quote: 'Det är exakt en calzone, utan skinka, minus bröd',
+      quote: 'Det här är exakt en calzone, utan skinka, minus bröd',
       profession_id: 1,
       country_id: 3,
       country_of_residence_id: 1,

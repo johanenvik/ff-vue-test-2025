@@ -60,12 +60,14 @@
       <drop-down
         :label="'Select Profession'"
         :options="professions"
-        :changeSelect="user.selectProfession"
+        :defaultName="'Profession'"
+        v-model="user.profession"
       />
       <drop-down
         :label="'Select Country'"
         :options="countries"
-        :changeSelect="user.selectCountry"
+        :defaultName="'Country'"
+        v-model="user.country"
       />
     </div>
     <button-component
@@ -99,6 +101,7 @@ export default {
   computed: {
     ...mapState({
       professions: state => state.professionModule.professions,
+      countries: state => state.countryModule.countries,
     }),
   },
   methods: {
