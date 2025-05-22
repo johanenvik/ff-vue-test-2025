@@ -1,6 +1,6 @@
 const mutations = {
     REMOVE_USER: (state, userId) => {
-        state.users = userId;
+        state.users = state.users.filter(user => user.id !== userId);
     },
 };
 

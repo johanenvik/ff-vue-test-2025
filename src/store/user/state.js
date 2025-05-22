@@ -17,7 +17,6 @@ const state = () => ({
       quote: 'Det här är exakt en calzone, utan skinka, minus bröd',
       profession_id: 1,
       country_id: 3,
-      country_of_residence_id: 1,
     },
   ],
 });

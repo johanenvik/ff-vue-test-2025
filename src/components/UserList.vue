@@ -60,12 +60,12 @@ export default {
     },
     userCountry(user) {
       // Hämta landets namn baserat på landets ID
-      const country = this.countries.find(c => c.value  === user.country_id)
+      const country = this.countries.find(c => c.value === user.country_id)
       return country ? country.text : 'Unknown'
     },
     userProfession(user) {
       // Hämta yrkets namn baserat på yrkets ID
-      const profession = this.professions.find(p => p.value  === user.profession_id)
+      const profession = this.professions.find(p => p.value === user.profession_id)
       return profession ? profession.text : 'Unknown'
     },
     userAge(user) {
