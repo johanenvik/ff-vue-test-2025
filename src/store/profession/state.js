@@ -2,19 +2,19 @@ const state = () => ({
   selectedProfessionId: null,
   professions: [
     {
-      value: 1,
+      id: 1,
       text: 'Front-end Developer',
     },
     {
-      value: 2,
+      id: 2,
       text: 'Back-end Developer',
     },
     {
-      value: 3,
+      id: 3,
       text: 'Product Owner',
     },
     {
-      value: 4,
+      id: 4,
       text: 'CTO',
     },
   ],
