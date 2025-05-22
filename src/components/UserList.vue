@@ -27,20 +27,27 @@
       </tr>
     </tbody>
   </table>
+  <confirmation-modal :visible="showConfirm" :message="confirmMessage" @confirm="confirmRemove"
+    @cancel="cancelRemove" />
 </template>
 
 <script>
 // import User from './User';
 import { mapState, mapActions } from 'vuex'
 import ButtonComponent from './Button.vue';
+import ConfirmationModal from './ConfirmationModal.vue';
 
 export default {
   name: 'UserList',
   components: {
     ButtonComponent,
+    ConfirmationModal
   },
   data() {
     return {
+      showConfirm: false,
+      confirmMessage: '',
+      selectedUser: null,
       selected: []
     };
   },
@@ -56,7 +63,19 @@ export default {
       'removeUser',
     ]),
     removeRow(user) {
-      this.removeUser(user);
+      // this.removeUser(user);
+      this.confirmMessage = `Are you sure you want to remove ${user.firstName} ${user.lastName}?`;
+      this.selectedUser = user;
+      this.showConfirm = true;
+    },
+    confirmRemove() {
+      this.removeUser(this.selectedUser);
+      this.showConfirm = false;
+      this.selectedUser = null;
+    },
+    cancelRemove() {
+      this.showConfirm = false;
+      this.selectedUser = null;
     },
     userCountry(user) {
       // Hämta landets namn baserat på landets ID
