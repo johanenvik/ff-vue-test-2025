@@ -61,13 +61,13 @@
         :label="'Select Profession'"
         :options="professions"
         :defaultName="'Profession'"
-        v-model="user.profession"
+        v-model="user.profession_id"
       />
       <drop-down
         :label="'Select Country'"
         :options="countries"
         :defaultName="'Country'"
-        v-model="user.country"
+        v-model="user.country_id"
       />
     </div>
     <button-component
@@ -91,6 +91,8 @@ export default {
         lastName: '',
         birthDate: null,
         quote: '',
+        profession_id: '',
+        country_id: ''
       },
     };
   },
@@ -109,10 +111,19 @@ export default {
       setProfession: 'SET_PROFESSION',
     }),
     ...mapActions([
-      'addNewUsers',
+      'addNewUser',
     ]),
     addUser() {
       this.addNewUser(this.user);
+
+      this.user = {
+        firstName: '',
+        lastName: '',
+        birthDate: null,
+        quote: '',
+        profession_id: '',
+        country_id: ''
+      };
     }
   },
 }
