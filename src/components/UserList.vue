@@ -63,7 +63,6 @@ export default {
       'removeUser',
     ]),
     removeRow(user) {
-      // this.removeUser(user);
       this.confirmMessage = `Are you sure you want to remove ${user.firstName} ${user.lastName}?`;
       this.selectedUser = user;
       this.showConfirm = true;
@@ -78,23 +77,24 @@ export default {
       this.selectedUser = null;
     },
     userCountry(user) {
-      // Hämta landets namn baserat på landets ID
       const country = this.countries.find(c => c.value === user.country_id)
       return country ? country.text : 'Unknown'
     },
     userProfession(user) {
-      // Hämta yrkets namn baserat på yrkets ID
       const profession = this.professions.find(p => p.value === user.profession_id)
       return profession ? profession.text : 'Unknown'
     },
     userAge(user) {
-      // Använder Date för att konvertera födelsedatumet till ett datumobjekt i stället för milli-sekunder.
-      // Tar bort UTC och använder lokal tid då användaren förväntar sig detta.
+      if (!user.birthDate) {
+        return 'Unknown';
+      }
       const birthDate = new Date(user.birthDate);
+      if (isNaN(birthDate)) {
+        return 'Unknown';
+      }
       const todaysDate = new Date();
       let age = todaysDate.getFullYear() - birthDate.getFullYear();
       const monthDiff = todaysDate.getMonth() - birthDate.getMonth();
-      // Om födelsedagen inte har inträffat än i år, dra av ett år från åldern.
       if (monthDiff < 0 || (monthDiff === 0 && todaysDate.getDate() < birthDate.getDate())) {
         age--;
       }
