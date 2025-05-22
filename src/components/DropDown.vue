@@ -7,16 +7,15 @@
     <div class="relative">
       <select
         id="grid-state"
+        v-model="selectedValue"
         class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        @change="changeSelect($event.target.value)"
       >
+        <option disabled value="">{{`Select ${defaultName}`}}</option>
         <option
-          :value="options[0].value"
-          v-text="options[0].text"
-        />
-        <option
-          :value="options[1].value"
-          v-text="options[1].text"
+          v-for="(option, key) in options"
+          :key="key"
+          :value="option.value"
+          v-text="option.text"
         />
       </select>
       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -32,18 +31,29 @@ export default {
   props: {
     options: {
       type: Array,
-      default: () => [
-        { value: 1, text: 'Option 1' },
-        { value: 2, text: 'Option 2' },
-      ],
+      default: () => [],
     },
     label: {
       type: String,
       default: 'Label',
     },
-    changeSelect: {
-      type: Function,
-      defualt: () => {},
+    modelValue: {
+      type: [String, Number],
+      default: '',
+    },
+    defaultName: {
+      type: String,
+      default: 'option',
+    },
+  },
+  computed: {
+    selectedValue: {
+      get() {
+        return this.modelValue
+      },
+      set(value) {
+        this.$emit('update:modelValue', value)
+      },
     },
   },
 }

@@ -1,19 +1,19 @@
 const state = () => ({
   countries: [
     {
-      id: 1,
+      value: 1,
       text: 'Sweden',
     },
     {
-      id: 2,
+      value: 2,
       text: 'Denmark',
     },
     {
-      id: 3,
+      value: 3,
       text: 'Finland',
     },
     {
-      id: 4,
+      value: 4,
       text: 'Norway',
     },
   ],
