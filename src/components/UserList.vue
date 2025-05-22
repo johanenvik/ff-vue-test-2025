@@ -104,11 +104,16 @@ export default {
       this.removeUser(user);
     },
     userAge(user) {
-      const birthDate = user.birthDate;
-      const todaysDate = Date.now();
-      const birthDateInMilliseconds = (new Date(birthDate)).getTime();
-      const ageInMilliSeconds;
-      const age = (new Date()).getUTCFullYear() - 1970;
+      // Använder Date för att konvertera födelsedatumet till ett datumobjekt i stället för milli-sekunder.
+      // Tar bort UTC och använder lokal tid då användaren förväntar sig detta.
+      const birthDate = new Date(user.birthDate);
+      const todaysDate = new Date();
+      let age = todaysDate.getFullYear() - birthDate.getFullYear();
+      const monthDiff = todaysDate.getMonth() - birthDate.getMonth();
+      // Om födelsedagen inte har inträffat än i år, dra av ett år från åldern.
+      if (monthDiff < 0 || (monthDiff === 0 && todaysDate.getDate() < birthDate.getDate())) {
+        age--;
+      }
       return age;
     },
   },
