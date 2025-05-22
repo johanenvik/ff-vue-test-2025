@@ -17,9 +17,9 @@
         <td class="border px-4 py-2" v-text="user.firstName + ' ' + user.lastName" />
         <td class="border px-4 py-2" v-text="user.birthDate" />
         <td class="border px-4 py-2" v-text="userAge(user)" />
-        <td class="border px-4 py-2" v-text="user.profession_id" />
-        <td class="border px-4 py-2" v-text="user.country_id" />
-        <td class="border px-4 py-2" v-text="user.country_of_residence_id" />
+        <td class="border px-4 py-2" v-text="userProfession(user)" />
+        <td class="border px-4 py-2" v-text="userCountry(user)" />
+        <td class="border px-4 py-2" v-text="userCountryOfResidence(user)" />
         <td class="border px-4 py-2" v-text="user.quote" />
         <td class="px-4 py-2">
           <button-component
@@ -50,6 +50,7 @@ export default {
     ...mapState({
       users: state => state.userModule.users,
       professions: state => state.professionModule.professions,
+      countries: state => state.countryModule.countries,
     }),
   },
   methods: {
@@ -58,6 +59,21 @@ export default {
     ]),
     removeRow(user) {
       this.removeUser(user);
+    },
+    userCountry(user) {
+      // Hämta landets namn baserat på landets ID
+      const country = this.countries.find(c => c.id  === user.country_id)
+      return country ? country.text : 'Unknown'
+    },
+    userCountryOfResidence(user) {
+      // Hämta landets namn baserat på landets ID och sätt userCountry som standardvärde om det inte finns något
+      const country = this.countries.find(c => c.id  === user.country_of_residence_id)
+      return country ? country.text : this.userCountry(user)
+    },
+    userProfession(user) {
+      // Hämta yrkets namn baserat på yrkets ID
+      const profession = this.professions.find(p => p.id  === user.profession_id)
+      return profession ? profession.text : 'Unknown'
     },
     userAge(user) {
       // Använder Date för att konvertera födelsedatumet till ett datumobjekt i stället för milli-sekunder.
