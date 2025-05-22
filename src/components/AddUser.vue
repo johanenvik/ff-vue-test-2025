@@ -114,6 +114,11 @@ export default {
       'addNewUser',
     ]),
     addUser() {
+      if (!this.user.firstName || !this.user.lastName || !this.user.birthDate || !this.user.quote || !this.user.profession_id || !this.user.country_id) {
+        alert('Please fill in all fields');
+        return;
+      }
+
       this.addNewUser(this.user);
 
       this.user = {
