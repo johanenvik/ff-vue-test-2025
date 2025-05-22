@@ -9,6 +9,16 @@ const state = () => ({
       profession_id: 1,
       country_id: 1,
     },
+    {
+      id: 2,
+      firstName: 'Johan',
+      lastName: 'Envik',
+      birthDate: '1985-07-08',
+      quote: 'Det är exakt en calzone, utan skinka, minus bröd',
+      profession_id: 1,
+      country_id: 3,
+      country_of_residence_id: 1,
+    },
   ],
 });
 
